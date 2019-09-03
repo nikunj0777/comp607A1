@@ -1,0 +1,155 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+	<!--<script language="javascript" src="scripts/main.js"></script>-->
+	<script>
+	// preloader needs to be a global variable - see setUpGraphics
+var preload;
+
+function init(){
+  preloadAssets();
+}
+
+function preloadAssets(){
+  preload = new createjs.LoadQueue();
+  preload.loadFile({id:"money",src:"images/earth.png"});
+  preload.loadFile({id:"money",src:"images/checklist.png"});
+  preload.loadFile({id:"money",src:"images/money.png"});
+  preload.loadFile({id:"money",src:"images/walking.png"});
+
+  preload.on("complete", setUpGraphics, this);
+}
+
+function setUpGraphics(){
+
+
+  canvas = document.getElementById("slide");
+	var stage = new createjs.Stage(canvas);
+  var box = new createjs.Container();
+  var box1 = new createjs.Container();
+  
+  var money = new createjs.Bitmap("images/earth.png");
+  money.regX = 300; money.regY = 100;
+  money.scaleX = 1.0; money.scaleY = 1.0;
+  money.x = 400;
+  money.y = 150;
+  createjs.Tween.get(money, {loop: false}).to({alpha: 1, x:400}, 3000, createjs.Ease.quadInOut);
+  stage.addChild(money);
+    // Crating coding for text that showing in animation
+    var text1 = new createjs.Text("", "25px Arial", "#f00");
+    text1.x = 400;
+    text1.y = 150;
+    text1.text = "Why we need living\n" +
+    "wages?\n" ;
+    box.addChild(text1);
+    stage.addChild(box);
+    box.x = -700;
+    box.alpha = 0;
+  // create js for Tween opration of text
+
+      createjs.Tween.get(box, {loop: false})
+      .to({alpha: 1, x: 0}, 2500, createjs.Ease.linear)
+      .wait(6000)
+      .to({alpha: 0, x: 700}, 1600, createjs.Ease.getBackIn)
+      .call(part2)
+      .wait(6000);
+
+  function part2(){
+    stage.removeChild(money);
+    var newone = new createjs.Bitmap("images/checklist.png");
+    newone.regX = 300; newone.regY = 100;
+    newone.scaleX = 1.0; newone.scaleY = 1.0;
+    newone.x = 400;
+    newone.y = 150;
+  createjs.Tween.get(newone, {loop: false}).to({alpha: 1, x:400}, 3000, createjs.Ease.linear);
+  stage.addChild(newone);
+    // Crating coding for text that showing in animation
+    var text2 = new createjs.Text("", "25px Arial", "#f00");
+    text2.x = 400;
+    text2.y = 50;
+    text2.text = "usage of wages.\n" +
+    "we need wages to fullfill our needs.\n";
+    box1.addChild(text2);
+    stage.addChild(box1);
+    box1.x = -700;
+    box1.alpha = 0;
+  // create js for Tween opration of text
+
+      createjs.Tween.get(box1, {loop: false})
+      .to({alpha: 1, x: 0}, 2500, createjs.Ease.linear)
+      .wait(6000)
+      .to({alpha: 0, x: 700}, 1600, createjs.Ease.getBackIn)
+      .call(part3);
+  }
+  var box2 = new createjs.Container();
+  function part3(){
+    //stage.removeChild(newone);
+    var newimg = new createjs.Bitmap("images/money.png");
+    newimg.regX = 300; newimg.regY = 100;
+    newimg.scaleX = 1.0; newimg.scaleY = 1.0;
+    newimg.x = 400;
+    newimg.y = 150;
+  createjs.Tween.get(newimg, {loop: false}).to({alpha: 1, x:400}, 3000, createjs.Ease.linear);
+  stage.addChild(newimg);
+    // Crating coding for text that showing in animation
+    var text3 = new createjs.Text("", "25px Arial", "#f00");
+    text3.x = 400;
+    text3.y = 150;
+    text3.text = "The End\n" +
+    "Thanks\n";
+    box2.addChild(text3);
+    stage.addChild(box2);
+    box2.x = -700;
+    box2.alpha = 0;
+  // create js for Tween opration of text
+
+      createjs.Tween.get(box2, {loop: false})
+      .to({alpha: 1, x: 0}, 2500, createjs.Ease.linear)
+      .wait(6000)
+      .to({alpha: 0, x: 700}, 1600, createjs.Ease.getBackIn)
+      .call(part4);
+  }
+  
+  function part4(){
+    
+    var walk= new createjs.Bitmap("images/walking.png");
+    walk.regX = 300; newimg1.regY = 100;
+    walk.scaleX = 1.0; newimg1.scaleY = 1.0;
+    walk.x = 400;
+    walk.y = 150;
+  createjs.Tween.get(walk, {loop: false}).to({alpha: 1, x:400}, 3000, createjs.Ease.linear);
+  stage.addChild(walk);
+    // Crating coding for text that showing in animation
+    var text4 = new createjs.Text("", "25px Arial", "#f00");
+    text4.x = 400;
+    text4.y = 150;
+    text4.text = "The End\n" +
+    "Thanks\n";
+    box3.addChild(text4);
+    stage.addChild(box3);
+    box3.x = -700;
+    box3.alpha = 0;
+  // create js for Tween opration of text
+
+      createjs.Tween.get(box3, {loop: false})
+      .to({alpha: 1, x: 0}, 2500, createjs.Ease.linear)
+      .wait(6000)
+      .to({alpha: 0, x: 700}, 1600, createjs.Ease.getBackIn);
+      
+  }
+
+  createjs.Ticker.setFPS(60);
+	createjs.Ticker.addEventListener("tick", stage);
+}
+	</script>
+</head>
+<body onload="init();">
+
+
+	<canvas id="slide" width="800" height="600"></canvas>
+
+
+
+</body>
+</html>
